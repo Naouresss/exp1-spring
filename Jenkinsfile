@@ -33,7 +33,13 @@ pipeline {
             }
         }
         */
-
+        stage("Build") {
+            steps {
+                dir("exp1-spring") {
+                    sh "mvn clean install"
+                }
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server') {
