@@ -14,19 +14,28 @@ pipeline {
                 sh "git clone https://github.com/Naouresss/exp1-spring.git"
             }
         }
-        stage ("Generate backend image") {
-              steps {
-                   dir("exp1-spring"){
-                      sh "mvn clean install"
-                      sh "docker build -t docexp1-spring ."
-                  }                
-              }
-          }
-        stage ("Run docker compose") {
+        //stage ("Generate backend image") {
+              //steps {
+                   //dir("exp1-spring"){
+                      //sh "mvn clean install"
+                      //sh "docker build -t docexp1-spring ."
+                  //}                
+              //}
+          //}
+        //stage ("Run docker compose") {
+            //steps {
+                // dir("exp1-spring"){
+                    //sh " docker-compose up -d"
+                }//                
+           // }
+        //}
+        stage('SonarQube Analysis'){
             steps {
-                 dir("exp1-spring"){
-                    sh " docker-compose up -d"
-                }                
+                withSonarQubeEnv('sonar-server'){
+                    dir("exp1-spring"){
+                        sh 'mvn sonar:sonar'
+                    }
+                }
             }
         }
     }
