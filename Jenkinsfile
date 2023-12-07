@@ -18,7 +18,7 @@ pipeline {
         }
         stage("Clone repo") {
             steps {
-                git 'git clone https://github.com/Naouresss/exp1-spring.git'
+                sh 'git clone https://github.com/Naouresss/exp1-spring.git'
             }
         }
         stage('Build') {
