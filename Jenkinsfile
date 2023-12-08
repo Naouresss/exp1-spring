@@ -25,7 +25,7 @@ pipeline {
             steps {
                 dir("exp1-spring") {
                     sh "mvn clean install"
-                    sh "docker build -t docexp1-spring ."
+                    sh "docker build -t sona-nexus-app ."
                 }
             }
         }
